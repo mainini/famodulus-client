@@ -1,0 +1,30 @@
+{
+  "name": "famodulus-client",
+  "version": "0.0.1",
+  "description": "JavaScript library for outsourcing calculations in multiplicative groups with prime modulus",
+  "keywords": [
+    "modexp",
+    "crypto",
+    "modular exponetiation",
+    "biginteger",
+    "big integer"
+  ],
+  "homepage": "http://mainini.ch",
+  "license": "MIT",
+  "private": "true",
+  "engines" : { "node" : ">=6.9.1" },
+  "dependencies": {
+    "big-integer": "~1.6.17"
+  },
+  "devDependencies": {
+    "browserify": "~13.1.1"
+  },
+  "scripts": {
+    "build-browser": "mkdir -p dist && browserify index.js -o dist/famodulus.browser.js"
+  },
+  "author": {
+    "name":  "Pascal Mainini",
+    "email": "pascal@mainini.ch",
+    "url":   "http://mainini.ch"
+  }
+}

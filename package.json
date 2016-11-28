@@ -20,7 +20,7 @@
     "browserify": "^13.1.1"
   },
   "scripts": {
-    "build-browser": "mkdir -p dist && browserify index.js -o dist/famodulus.browser.js"
+    "build-browser": "mkdir -p dist && browserify famodulus-client.js -o dist/famodulus.browser.js"
   },
   "author": {
     "name":  "Pascal Mainini",

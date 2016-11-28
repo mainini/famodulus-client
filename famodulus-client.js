@@ -1,5 +1,5 @@
-var famodulus = require('./src/famodulus-client.js');
-var bigint = require('./src/bigint-wrapper.js');
+var famodulus = require('./src/Famodulus.js');
+var bigint = require('./src/bigint.js');
 
 if (typeof module !== 'undefined' && module.hasOwnProperty('exports')) {
     module.exports = {

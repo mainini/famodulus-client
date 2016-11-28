@@ -14,10 +14,10 @@
   "private": "true",
   "engines" : { "node" : ">=6.9.1" },
   "dependencies": {
-    "big-integer": "~1.6.17"
+    "BigInt": "^5.5.3"
   },
   "devDependencies": {
-    "browserify": "~13.1.1"
+    "browserify": "^13.1.1"
   },
   "scripts": {
     "build-browser": "mkdir -p dist && browserify index.js -o dist/famodulus.browser.js"

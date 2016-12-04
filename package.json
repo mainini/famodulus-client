@@ -19,8 +19,12 @@
   "devDependencies": {
     "browserify": "^13.1.1"
   },
+  "directories": {
+    "lib": "./lib"
+  },
+  "main": "./lib/famodulus-client.js",
   "scripts": {
-    "build-browser": "mkdir -p dist && browserify famodulus-client.js -o dist/famodulus.browser.js"
+    "build-browser": "mkdir -p dist && browserify lib/famodulus-client.js -o dist/famodulus.browser.js"
   },
   "author": {
     "name":  "Pascal Mainini",

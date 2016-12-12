@@ -27,6 +27,7 @@
   "forin": true,
   "smarttabs": true,
   "globals": {
-    "verificatum": false
+    "verificatum": false,
+    "BigInt": false
   }
 }

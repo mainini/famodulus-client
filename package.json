@@ -9,26 +9,30 @@
     "biginteger",
     "big integer"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mainini/famodulus-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mainini/famodulus-client/issues"
+  },
   "homepage": "http://mainini.ch",
-  "license": "MIT",
-  "private": "true",
-  "engines" : { "node" : ">=6.9.1" },
-  "dependencies": {
-    "BigInt": "^5.5.3"
-  },
-  "devDependencies": {
-    "browserify": "^13.1.1"
-  },
-  "directories": {
-    "lib": "./lib"
-  },
-  "main": "./lib/famodulus-client.js",
-  "scripts": {
-    "build-browser": "mkdir -p dist && browserify lib/famodulus-client.js --standalone FamodulusClient -o dist/famodulus.browser.js"
-  },
   "author": {
     "name":  "Pascal Mainini",
     "email": "pascal@mainini.ch",
     "url":   "http://mainini.ch"
+  },
+  "license": "MIT",
+  "private": "true",
+  "engines" : { "node" : ">=6.9.1" },
+  "dependencies": {
+    "BigInt": "^5.5.3",
+    "browserify": "^13.1.1",
+    "shelljs": "^0.7.5"
+  },
+  "main": "./lib/FamodulusClient.js",
+  "scripts": {
+    "build": "node build.js",
+    "install": "npm run build"
   }
 }

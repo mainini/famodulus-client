@@ -30,9 +30,14 @@
     "browserify": "^13.1.1",
     "shelljs": "^0.7.5"
   },
+  "devDependencies": {
+    "semistandard": "^9.2.1"
+  },
   "main": "./lib/FamodulusClient.js",
   "scripts": {
     "build": "node build.js",
-    "install": "npm run build"
+    "install": "npm run build",
+    "lint": "semistandard",
+    "test": "npm run lint"
   }
 }

@@ -3,4 +3,4 @@
 require('shelljs/global');
 
 mkdir('-p', '.build');
-exec('browserify lib/FamodulusClient.js --standalone FamodulusClient -o .build/famodulus.browser.js');
+exec('browserify lib/client.js --standalone FamodulusClient -o .build/famodulus.browser.js');

@@ -1,3 +1,5 @@
+/* global mkdir, exec */
+
 require('shelljs/global');
 
 mkdir('-p', '.build');

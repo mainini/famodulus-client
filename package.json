@@ -24,7 +24,7 @@
   },
   "main": "./lib/famodulus-client.js",
   "scripts": {
-    "build-browser": "mkdir -p dist && browserify lib/famodulus-client.js -o dist/famodulus.browser.js"
+    "build-browser": "mkdir -p dist && browserify lib/famodulus-client.js --standalone FamodulusClient -o dist/famodulus.browser.js"
   },
   "author": {
     "name":  "Pascal Mainini",

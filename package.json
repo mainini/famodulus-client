@@ -27,6 +27,8 @@
   "engines" : { "node" : ">=6.9.1" },
   "dependencies": {
     "BigInt": "^5.5.3",
+    "isomorphic-fetch": "^2.2.1",
+    "es6-promise": "^4.0.5",
     "browserify": "^13.1.1",
     "shelljs": "^0.7.5"
   },

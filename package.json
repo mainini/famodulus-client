@@ -33,13 +33,16 @@
     "shelljs": "^0.7.5"
   },
   "devDependencies": {
-    "semistandard": "^9.2.1"
+    "semistandard": "^9.2.1",
+    "tape": "^4.6.3",
+    "testling": "^1.7.1"
   },
   "main": "./lib/client.js",
   "scripts": {
     "build": "node build.js",
     "install": "npm run build",
     "lint": "semistandard",
-    "test": "npm run lint"
+    "test": "tape test/*.js",
+    "test-browser": "browserify test/*.js | testling -u"
   }
 }

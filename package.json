@@ -43,8 +43,8 @@
     "build": "node build.js",
     "install": "npm run build",
     "lint": "semistandard",
-    "test": "tape test/*.js",
-    "test-browser": "browserify test/*.js | testling -u",
+    "test": "npm run-script lint && tape test/*.js",
+    "test-browser": "npm run-script lint && browserify test/*.js | testling -u",
     "doc": "jsdoc -d .build/doc lib/*"
   }
 }

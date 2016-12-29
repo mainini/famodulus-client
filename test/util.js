@@ -9,6 +9,9 @@ var test = require('tape');
 var util = require('../lib/util.js');
 var _I = require('BigInt');
 
+/*
+ * Test the request function
+ */
 test('request', function (t) {
   t.plan(1);
   util.request({modexps: [{b: '2', e: '4', m: 'b'}]}, 'http://localhost:8081/api/modexp/').then(result => {
@@ -16,18 +19,27 @@ test('request', function (t) {
   });
 });
 
+/*
+ * Test the BigInt constants
+ */
 test('constants', function (t) {
   t.plan(2);
   t.ok(_I.equals(util.ZERO, _I.str2bigInt('0', 16, 0)), 'ZERO = 0');
   t.ok(_I.equals(util.ONE, _I.str2bigInt('1', 16, 0)), 'ONE = 1');
 });
 
+/*
+ * Test the random function (no true random generator test, though)
+ */
 test('random', function (t) {
   t.plan(1);
   var bound = _I.str2bigInt('2', 16, 0);
   t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than bound');
 });
 
+/*
+ * Test the randomList function
+ */
 test('randomlist', function (t) {
   var elems = 10;
   t.plan(elems);
@@ -37,6 +49,9 @@ test('randomlist', function (t) {
   }
 });
 
+/*
+ * Test the shuffleList function
+ */
 test('shufflelist', function (t) {
   t.plan(9);
 

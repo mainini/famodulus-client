@@ -12,47 +12,16 @@ var dec = require('../lib/dec.js');
 var server1 = 'http://localhost:8081/api/modexp/';
 var server2 = 'http://localhost:8081/api/modexp/';
 
-var algorithmsSingle = [
+var algorithms = [
   {func: direct.direct, options: {server: server1, brief: true}},
   {func: dec.decExponent, options: {servers: [server1, server2], brief: true}},
   {func: dec.decExponent, options: {servers: [server1, server2], checked: true, brief: true}}
 ];
 
-var algorithmsMulti = [
-  {func: direct.directs, options: {server: server1, brief: true}},
-  {func: dec.decExponents, options: {servers: [server1, server2], brief: true}},
-  {func: dec.decExponents, options: {servers: [server1, server2], checked: true, brief: true}}
-];
-
 test('single', function (t) {
-  t.plan(8 * algorithmsSingle.length);
+  t.plan(12 * algorithms.length);
 
-  algorithmsSingle.forEach(alg => {
-    var optionsBrief = Object.assign({}, alg.options);
-
-    alg.func('2', '4', 'b', optionsBrief).then(result => {
-      t.equal(result.b, undefined, 'result has no base');
-      t.equal(result.e, undefined, 'result has no exponent');
-      t.equal(result.m, undefined, 'result has no modulus');
-      t.equal(result.r, '5', 'brief result is 5');
-    });
-
-    var optionsFull = Object.assign({}, alg.options);
-    optionsFull.brief = false;
-
-    alg.func('2', '4', 'b', optionsFull).then(result => {
-      t.equal(result.b, '2', 'result has base 2');
-      t.equal(result.e, '4', 'result has exponent 4');
-      t.equal(result.m, 'b', 'result has modulus 2');
-      t.equal(result.r, '5', 'full result is 5');
-    });
-  });
-});
-
-test('multi-single', function (t) {
-  t.plan(12 * algorithmsMulti.length);
-
-  algorithmsMulti.forEach(alg => {
+  algorithms.forEach(alg => {
     var optionsBrief = Object.assign({}, alg.options);
 
     var modexps = [{b: '2', e: '4', m: 'b'}];
@@ -102,10 +71,10 @@ test('multi-single', function (t) {
   });
 });
 
-test('multi-multi', function (t) {
-  t.plan(18 * algorithmsMulti.length);
+test('multi', function (t) {
+  t.plan(18 * algorithms.length);
 
-  algorithmsMulti.forEach(alg => {
+  algorithms.forEach(alg => {
     var optionsBrief = Object.assign({}, alg.options);
 
     var modexps = [

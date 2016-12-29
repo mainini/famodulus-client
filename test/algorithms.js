@@ -56,31 +56,31 @@ test('multi-single', function (t) {
     var optionsBrief = Object.assign({}, alg.options);
 
     var modexps = [{b: '2', e: '4', m: 'b'}];
-    var defaults = {base: undefined, exponent: undefined, modulus: undefined};
+    var defaults = {b: undefined, e: undefined, m: undefined};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].r, '5', 'single modexp, no defaults, result is 5');
     });
 
     modexps = [{b: '2', e: undefined, m: undefined}];
-    defaults = {base: '3', exponent: '4', modulus: 'b'};
+    defaults = {b: '3', e: '4', m: 'b'};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].r, '5', 'single modexp with base, result is 5');
     });
 
     modexps = [{b: undefined, e: '4', m: undefined}];
-    defaults = {base: '2', exponent: '5', modulus: 'b'};
+    defaults = {b: '2', e: '5', m: 'b'};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].r, '5', 'single modexp with exponent, result is 5');
     });
 
     modexps = [{b: undefined, e: undefined, m: 'b'}];
-    defaults = {base: '2', exponent: '4', modulus: 'c'};
+    defaults = {b: '2', e: '4', m: 'c'};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].r, '5', 'single modexp with modulus, result is 5');
     });
 
     modexps = [{b: undefined, e: undefined, m: undefined}];
-    defaults = {base: '2', exponent: '4', modulus: 'b'};
+    defaults = {b: '2', e: '4', m: 'b'};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].b, undefined, 'result has no base');
       t.equal(result[0].e, undefined, 'result has no exponent');
@@ -92,7 +92,7 @@ test('multi-single', function (t) {
     optionsFull.brief = false;
 
     modexps = [{b: '2', e: '4', m: 'b'}];
-    defaults = {base: undefined, exponent: undefined, modulus: undefined};
+    defaults = {b: undefined, e: undefined, m: undefined};
     alg.func(modexps, defaults, optionsFull).then(result => {
       t.equal(result[0].b, '2', 'result has base 2');
       t.equal(result[0].e, '4', 'result has exponent 4');
@@ -116,7 +116,7 @@ test('multi-multi', function (t) {
       {b: '2', e: '5', m: undefined},
       {b: '3', e: '5', m: 'b'}
     ];
-    var defaults = {base: '2', exponent: '4', modulus: 'b'};
+    var defaults = {b: '2', e: '4', m: 'b'};
 
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[1].b, undefined, 'result[1] has no base');

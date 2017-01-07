@@ -36,7 +36,7 @@ test('constructor', function (t) {
  * Test the direct function of FamodulusClient
  */
 test('direct', function (t) {
-  t.plan(41);
+  t.plan(40);
 
   var defaults = {b: '2', e: '4', m: 'b'};
   var modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -48,8 +48,7 @@ test('direct', function (t) {
 
   // test argument number checking
   var c2 = new Client(servers);
-  t.throws(() => c2.direct(), /invalid number of arguments/, 'too little arguments');
-  t.throws(() => c2.direct('1', '2', '3', '4'), /invalid number of arguments/, 'too many arguments');
+  t.throws(() => c2.direct(), /missing modexps argument/, 'too little arguments');
 
   // direct(modexps)
   c2.direct(modexps1).then(result => {
@@ -115,7 +114,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(48);
+  t.plan(47);
 
   var defaults = {b: '2', e: '4', m: 'b'};
   var modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -123,8 +122,7 @@ test('decExponent', function (t) {
 
   // test argument number checking
   var c1 = new Client(servers);
-  t.throws(() => c1.decExponent(), /invalid number of arguments/, 'too little arguments');
-  t.throws(() => c1.decExponent('1', '2', '3', '4'), /invalid number of arguments/, 'too many arguments');
+  t.throws(() => c1.decExponent(), /missing modexps argument/, 'too little arguments');
 
   // decExponent(modexps)
   c1.decExponent(modexps1).then(result => {

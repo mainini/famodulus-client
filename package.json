@@ -39,7 +39,7 @@
   },
   "main": "./lib/client.js",
   "scripts": {
-    "build": "node build.js",
+    "build": "npm run-script lint && node build.js",
     "install": "npm run build",
     "lint": "semistandard",
     "test": "tape test/*.js",

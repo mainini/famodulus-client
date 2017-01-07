@@ -114,7 +114,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(47);
+  t.plan(49);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -135,6 +135,13 @@ test('decExponent', function (t) {
   c1.decExponent(modexps1, true).then(result => {
     t.equal(result[0].r, '5', 'result server 1 is 5');
     t.equal(result[0].b, undefined, 'result has no base');
+  });
+
+  t.throws(() => c1.decExponent(modexps1, {}, 1), /must be boolean/, 'checked must be boolean');
+  c1.decExponent([{b: '2', e: 'b', m: '4'}]).then(() => {
+    t.fail('Z_q: no error occured');
+  }).catch(e => {
+    if (e.message === 'Exponent not in Z_q!') t.pass();
   });
 
   // decExponent(modexps, defaults)

@@ -5,10 +5,10 @@
  */
 'use strict';
 
-var test = require('tape');
-var Client = require('../lib/client.js');
+const test = require('tape');
+const Client = require('../lib/client.js');
 
-var servers = ['http://localhost:8081/api/modexp/', 'http://localhost:8081/api/modexp/'];
+const servers = ['http://localhost:8081/api/modexp/', 'http://localhost:8081/api/modexp/'];
 
 /*
  * Test the constructor of FamodulusClient
@@ -16,17 +16,17 @@ var servers = ['http://localhost:8081/api/modexp/', 'http://localhost:8081/api/m
 test('constructor', function (t) {
   t.plan(9);
 
-  var c1 = Client('servers1');  // test non-constructor form as well
+  let c1 = Client('servers1');  // test non-constructor form as well
   t.equal(c1.servers, 'servers1', 'c1: servers set correctly');
   t.notOk(c1.checked, 'c1: checked default value');
   t.ok(c1.brief, 'c1: brief default value');
 
-  var c2 = new Client('servers2', true);
+  let c2 = new Client('servers2', true);
   t.equal(c2.servers, 'servers2', 'c2: servers set correctly');
   t.ok(c2.checked, 'c2: checked set correctly');
   t.ok(c2.brief, 'c2: brief default value');
 
-  var c3 = new Client('servers3', true, false);
+  let c3 = new Client('servers3', true, false);
   t.equal(c3.servers, 'servers3', 'c3: servers set correctly');
   t.ok(c3.checked, 'c3: checked set correctly');
   t.notOk(c3.brief, 'c3: brief set correctly');
@@ -38,16 +38,16 @@ test('constructor', function (t) {
 test('direct', function (t) {
   t.plan(40);
 
-  var defaults = {b: '2', e: '4', m: 'b'};
-  var modexps1 = [{b: '2', e: '4', m: 'b'}];
-  var modexps2 = [{b: '2', e: '4', m: 'b'}, {e: '4', m: 'b'}, {b: '2', m: 'b'}, {m: 'b'}, {}];
+  let defaults = {b: '2', e: '4', m: 'b'};
+  let modexps1 = [{b: '2', e: '4', m: 'b'}];
+  let modexps2 = [{b: '2', e: '4', m: 'b'}, {e: '4', m: 'b'}, {b: '2', m: 'b'}, {m: 'b'}, {}];
 
   // test for unsupported checking
-  var c1 = new Client(servers, true);
+  let c1 = new Client(servers, true);
   t.throws(() => c1.direct(modexps1), /does not support checking/, 'checking unsupported');
 
   // test argument number checking
-  var c2 = new Client(servers);
+  let c2 = new Client(servers);
   t.throws(() => c2.direct(), /Missing modexps argument/, 'too little arguments');
 
   // direct(modexps)
@@ -91,7 +91,7 @@ test('direct', function (t) {
   });
 
   // test for full response
-  var c3 = new Client(servers, false, false);
+  let c3 = new Client(servers, false, false);
   c3.direct(modexps2, defaults).then(result => {
     t.equal(result[0].r, '5', 'result[0] default server is 5');
     t.equal(result[1].r, '5', 'result[1] default server is 5');
@@ -116,12 +116,12 @@ test('direct', function (t) {
 test('decExponent', function (t) {
   t.plan(47);
 
-  var defaults = {b: '2', e: '4', m: 'b'};
-  var modexps1 = [{b: '2', e: '4', m: 'b'}];
-  var modexps2 = [{b: '2', e: '4', m: 'b'}, {e: '4', m: 'b'}, {b: '2', m: 'b'}, {m: 'b'}, {}];
+  let defaults = {b: '2', e: '4', m: 'b'};
+  let modexps1 = [{b: '2', e: '4', m: 'b'}];
+  let modexps2 = [{b: '2', e: '4', m: 'b'}, {e: '4', m: 'b'}, {b: '2', m: 'b'}, {m: 'b'}, {}];
 
   // test argument number checking
-  var c1 = new Client(servers);
+  let c1 = new Client(servers);
   t.throws(() => c1.decExponent(), /Missing modexps argument/, 'too little arguments');
 
   // decExponent(modexps)
@@ -167,7 +167,7 @@ test('decExponent', function (t) {
   });
 
   // test for full response
-  var c2 = new Client(servers, false, false);
+  let c2 = new Client(servers, false, false);
   c2.decExponent(modexps2, defaults).then(result => {
     t.equal(result[0].r, '5', 'result[0] default server is 5');
     t.equal(result[1].r, '5', 'result[1] default server is 5');
@@ -186,7 +186,7 @@ test('decExponent', function (t) {
   });
 
   // decExponent(modexps), checked by default
-  var c3 = new Client(servers, true);
+  let c3 = new Client(servers, true);
   t.ok(c3.checked, 'c3: checked true');
   c3.decExponent(modexps1).then(result => {
     t.equal(result[0].r, '5', 'result server 1 is 5');
@@ -194,7 +194,7 @@ test('decExponent', function (t) {
   });
 
   // decExponent(modexps), forced unchecked
-  var c4 = new Client(servers, false);
+  let c4 = new Client(servers, false);
   t.notOk(c4.checked, 'c4: checked false');
   c4.decExponent(modexps1).then(result => {
     t.equal(result[0].r, '5', 'result server 1 is 5');

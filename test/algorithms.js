@@ -5,18 +5,18 @@
  */
 'use strict';
 
-var test = require('tape');
-var direct = require('../lib/direct.js');
-var dec = require('../lib/dec.js');
+const test = require('tape');
+const direct = require('../lib/direct.js');
+const dec = require('../lib/dec.js');
 
-var server1 = 'http://localhost:8081/api/modexp/';
-var server2 = 'http://localhost:8081/api/modexp/';
+const server1 = 'http://localhost:8081/api/modexp/';
+const server2 = 'http://localhost:8081/api/modexp/';
 
 /*
  * A mapping of algorithm functions to test and their reqired options, used
  * in the tests below
  */
-var algorithms = [
+const algorithms = [
   {func: direct.direct, options: {server: server1, brief: true}},
   {func: dec.decExponent, options: {servers: [server1, server2], brief: true}},
   {func: dec.decExponent, options: {servers: [server1, server2], checked: true, brief: true}}
@@ -30,11 +30,11 @@ test('single', function (t) {
 
   algorithms.forEach(alg => {
     // due to asynchronous code, we need to copy the options
-    var optionsBrief = Object.assign({}, alg.options);
+    let optionsBrief = Object.assign({}, alg.options);
 
     // simple modexp, no defaults
-    var modexps = [{b: '2', e: '4', m: 'b'}];
-    var defaults = {};
+    let modexps = [{b: '2', e: '4', m: 'b'}];
+    let defaults = {};
     alg.func(modexps, defaults, optionsBrief).then(result => {
       t.equal(result[0].r, '5', 'single modexp, no defaults, result is 5');
     });
@@ -71,7 +71,7 @@ test('single', function (t) {
     });
 
     // due to asynchronous code, we need to copy the options
-    var optionsFull = Object.assign({}, alg.options);
+    let optionsFull = Object.assign({}, alg.options);
     optionsFull.brief = false;
 
     // test full response
@@ -94,10 +94,10 @@ test('multi', function (t) {
 
   algorithms.forEach(alg => {
     // due to asynchronous code, we need to copy the options
-    var optionsBrief = Object.assign({}, alg.options);
+    let optionsBrief = Object.assign({}, alg.options);
 
     // a set of modexps with various values present/missing
-    var modexps = [
+    let modexps = [
       {},
       {b: '2'},
       {e: '4'},
@@ -105,7 +105,7 @@ test('multi', function (t) {
       {b: '2', e: '5'},
       {b: '3', e: '5', m: 'b'}
     ];
-    var defaults = {b: '2', e: '4', m: 'b'};
+    let defaults = {b: '2', e: '4', m: 'b'};
 
     // execute modexps with brief result
     alg.func(modexps, defaults, optionsBrief).then(result => {
@@ -122,7 +122,7 @@ test('multi', function (t) {
     });
 
     // due to asynchronous code, we need to copy the options
-    var optionsFull = Object.assign({}, alg.options);
+    let optionsFull = Object.assign({}, alg.options);
     optionsFull.brief = false;
 
     // execute modexps with full result

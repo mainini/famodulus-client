@@ -5,9 +5,9 @@
  */
 'use strict';
 
-var test = require('tape');
-var util = require('../lib/util.js');
-var _I = require('BigInt');
+const test = require('tape');
+const util = require('../lib/util.js');
+const _I = require('BigInt');
 
 /*
  * Test the request function
@@ -33,7 +33,7 @@ test('constants', function (t) {
  */
 test('random', function (t) {
   t.plan(1);
-  var bound = _I.str2bigInt('2', 16, 0);
+  let bound = _I.str2bigInt('2', 16, 0);
   t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than bound');
 });
 
@@ -41,10 +41,10 @@ test('random', function (t) {
  * Test the randomList function
  */
 test('randomlist', function (t) {
-  var elems = 10;
+  let elems = 10;
   t.plan(elems);
-  var list = util.randomList(elems);
-  for (var i = 0; i < list.length; i++) {
+  let list = util.randomList(elems);
+  for (let i = 0; i < list.length; i++) {
     t.ok(list.indexOf(i) >= 0, 'list contains element ' + i);
   }
 });
@@ -55,9 +55,9 @@ test('randomlist', function (t) {
 test('shufflelist', function (t) {
   t.plan(9);
 
-  var list = ['A', 'B', 'C'];
-  var shuffle = [2, 0, 1];
-  var result = util.shuffleList(list, shuffle);
+  let list = ['A', 'B', 'C'];
+  let shuffle = [2, 0, 1];
+  let result = util.shuffleList(list, shuffle);
   t.equal(result.indexOf('C'), 0, 'C is at 0');
   t.equal(result.indexOf('A'), 1, 'A is at 1');
   t.equal(result.indexOf('B'), 2, 'B is at 2');

@@ -48,7 +48,7 @@ test('direct', function (t) {
 
   // test argument number checking
   var c2 = new Client(servers);
-  t.throws(() => c2.direct(), /missing modexps argument/, 'too little arguments');
+  t.throws(() => c2.direct(), /Missing modexps argument/, 'too little arguments');
 
   // direct(modexps)
   c2.direct(modexps1).then(result => {
@@ -122,7 +122,7 @@ test('decExponent', function (t) {
 
   // test argument number checking
   var c1 = new Client(servers);
-  t.throws(() => c1.decExponent(), /missing modexps argument/, 'too little arguments');
+  t.throws(() => c1.decExponent(), /Missing modexps argument/, 'too little arguments');
 
   // decExponent(modexps)
   c1.decExponent(modexps1).then(result => {

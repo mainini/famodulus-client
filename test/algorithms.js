@@ -9,6 +9,8 @@ const test = require('tape');
 const direct = require('../lib/direct.js');
 const dec = require('../lib/dec.js');
 
+require('./fetchmock.js');
+
 const server1 = 'http://localhost:8081/api/modexp/';
 const server2 = 'http://localhost:8081/api/modexp/';
 

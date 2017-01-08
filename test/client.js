@@ -8,6 +8,8 @@
 const test = require('tape');
 const Client = require('../lib/client.js');
 
+require('./fetchmock.js');
+
 const servers = ['http://localhost:8081/api/modexp/', 'http://localhost:8081/api/modexp/'];
 
 /*

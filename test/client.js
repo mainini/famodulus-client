@@ -36,7 +36,7 @@ test('constructor', function (t) {
  * Test the direct function of FamodulusClient
  */
 test('direct', function (t) {
-  t.plan(40);
+  t.plan(41);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -45,6 +45,7 @@ test('direct', function (t) {
   // test for unsupported checking
   let c1 = new Client(servers, true);
   t.throws(() => c1.direct(modexps1), /does not support checking/, 'checking unsupported');
+  t.throws(() => c1.direct(defaults), /Need an array of modexps/, 'wrong arguments');
 
   // test argument number checking
   let c2 = new Client(servers);
@@ -114,7 +115,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(49);
+  t.plan(50);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -123,6 +124,7 @@ test('decExponent', function (t) {
   // test argument number checking
   let c1 = new Client(servers);
   t.throws(() => c1.decExponent(), /Missing modexps argument/, 'too little arguments');
+  t.throws(() => c1.decExponent(defaults), /Need an array of modexps/, 'wrong arguments');
 
   // decExponent(modexps)
   c1.decExponent(modexps1).then(result => {

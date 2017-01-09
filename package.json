@@ -29,7 +29,8 @@
     "BigInt": "^5.5.3",
     "isomorphic-fetch": "^2.2.1",
     "browserify": "^13.1.1",
-    "shelljs": "^0.7.5"
+    "shelljs": "^0.7.5",
+    "randombytes":"^2.0.3"
   },
   "devDependencies": {
     "semistandard": "^9.2.1",

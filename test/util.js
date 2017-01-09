@@ -32,9 +32,12 @@ test('constants', function (t) {
  * Test the random function (no true random generator test, though)
  */
 test('random', function (t) {
-  t.plan(1);
+  t.plan(2);
+
   let bound = _I.str2bigInt('2', 16, 0);
-  t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than bound');
+  t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than 0x2');
+  bound = _I.str2bigInt('10000', 16, 0);
+  t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than 0x1000');
 });
 
 /*

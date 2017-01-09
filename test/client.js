@@ -117,7 +117,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(54);
+  t.plan(55);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -141,8 +141,15 @@ test('decExponent', function (t) {
     t.equal(result[0].b, undefined, 'result has no base');
   });
 
+  // test with larger modulus for the random number generator
+  c1.decExponent([{b: '2', e: '20', m: '10000'}], true).then(result => {
+    t.equal(result[0].r, '64', 'large base result is correct');
+  });
+
   // checked parameter must be boolean
   t.throws(() => c1.decExponent(modexps1, {}, 1), /must be boolean/, 'checked must be boolean');
+
+  // e is not in Z_q
   c1.decExponent([{b: '2', e: 'b', m: '4'}]).then(() => {
     t.fail('Z_q: no error occured');
   }).catch(e => {

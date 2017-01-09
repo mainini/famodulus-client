@@ -117,7 +117,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(52);
+  t.plan(54);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -141,6 +141,7 @@ test('decExponent', function (t) {
     t.equal(result[0].b, undefined, 'result has no base');
   });
 
+  // checked parameter must be boolean
   t.throws(() => c1.decExponent(modexps1, {}, 1), /must be boolean/, 'checked must be boolean');
   c1.decExponent([{b: '2', e: 'b', m: '4'}]).then(() => {
     t.fail('Z_q: no error occured');
@@ -148,16 +149,32 @@ test('decExponent', function (t) {
     if (e.message === 'Exponent not in Z_q!') t.pass();
   });
 
+  // must detect inequal amount of results returned.
+  c1.decExponent([{b: 'fd', e: '4', m: 'b'}, {b: '2', e: '4', m: 'b'}]).then(() => {
+    t.fail('Inequal amount of results not detected');
+  }).catch(e => {
+    if (e.message === 'Inequal amount of results obtained!') t.pass();
+  });
+
+  // wrong result obtained from both servers, cannot be detected
+  c1.decExponent([{b: 'fe', e: '4', m: 'b'}], {}, true).then(() => {
+    t.pass();
+  }).catch(e => {
+    if (e.message === 'Checking failed!') t.fail('Checking did fail');
+  });
+
+  // single wrong result obtained, but checking not enabled
+  c1.decExponent([{b: 'ff', e: '4', m: 'b'}], {}, false).then(() => {
+    t.pass();
+  }).catch(e => {
+    if (e.message === 'Checking failed!') t.fail('Checking did fail');
+  });
+
+  // single wrong result obtained, checked - must be detected
   c1.decExponent([{b: 'ff', e: '4', m: 'b'}], {}, true).then(() => {
     t.fail('Checking did not fail');
   }).catch(e => {
     if (e.message === 'Checking failed!') t.pass();
-  });
-
-  c1.decExponent([{b: 'fe', e: '4', m: 'b'}], {}, true).then(() => {
-    t.fail('Inequal amount of results not detected');
-  }).catch(e => {
-    if (e.message === 'Inequal amount of results obtained!') t.pass();
   });
 
   // decExponent(modexps, defaults)

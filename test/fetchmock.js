@@ -25,8 +25,9 @@ function fetchMock (uri, data) {
     let m = Number.parseInt(modexp.m || body.m, 16);
     let r = Math.pow(b, e) % m;
 
+    if (b === 0xfd && uri === 'server_2') continue;   // test for inequal amount of results
+    if (b === 0xfe) r--;  // should not be detected by checking
     if (b === 0xff && uri === 'server_2') r--;  // let checking fail
-    if (b === 0xfe && uri === 'server_2') continue;   // drop result
 
     if (body.brief) results.push({r: r.toString(16)});
     else results.push({b: modexp.b, e: modexp.e, m: modexp.m, r: r.toString(16)});

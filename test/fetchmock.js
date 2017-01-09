@@ -3,16 +3,34 @@
  * Licensed under MIT license, see included file LICENSE or
  * http://opensource.org/licenses/MIT
  */
+
+/* global Promise */
 'use strict';
 
-function fetchMock(uri, data) {
+/**
+ * Mock method for global fetch, performs local calculations and allows for
+ * manipulations of results to be able to test error cases in the unit tests.
+ *
+ * @param {String} uri          URI for the request, not used here
+ * @param {Object} data         Request data (body)
+ * @returns {Promise}           With a json() function returning the actual content
+ */
+function fetchMock (uri, data) {
   let body = JSON.parse(data.body);
+  let results = [];
 
-  console.log("brief: " + body.brief);
-  console.log("modexps: " + JSON.stringify(body.modexps));
+  for (let modexp of body.modexps) {
+    let b = Number.parseInt(modexp.b || body.b, 16);
+    let e = Number.parseInt(modexp.e || body.e, 16);
+    let m = Number.parseInt(modexp.m || body.m, 16);
+    let r = Math.pow(b, e) % m;
 
-  return origFetch(uri, data);
-};
+    if (body.brief) results.push({r: r.toString(16)});
+    else results.push({b: modexp.b, e: modexp.e, m: modexp.m, r: r.toString(16)});
+  }
 
-let origFetch = fetch;
+  return Promise.resolve({json: () => ({modexps: results})});
+}
+
+/* eslint-disable */
 fetch = fetchMock;

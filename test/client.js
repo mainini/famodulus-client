@@ -10,7 +10,7 @@ const Client = require('../lib/client.js');
 
 require('./fetchmock.js');
 
-const servers = ['http://localhost:8081/api/modexp/', 'http://localhost:8081/api/modexp/'];
+const servers = ['server_1', 'server_2'];
 
 /*
  * Test the constructor of FamodulusClient
@@ -117,7 +117,7 @@ test('direct', function (t) {
  * Test the decExponent function of FamodulusClient
  */
 test('decExponent', function (t) {
-  t.plan(50);
+  t.plan(52);
 
   let defaults = {b: '2', e: '4', m: 'b'};
   let modexps1 = [{b: '2', e: '4', m: 'b'}];
@@ -146,6 +146,18 @@ test('decExponent', function (t) {
     t.fail('Z_q: no error occured');
   }).catch(e => {
     if (e.message === 'Exponent not in Z_q!') t.pass();
+  });
+
+  c1.decExponent([{b: 'ff', e: '4', m: 'b'}], {}, true).then(() => {
+    t.fail('Checking did not fail');
+  }).catch(e => {
+    if (e.message === 'Checking failed!') t.pass();
+  });
+
+  c1.decExponent([{b: 'fe', e: '4', m: 'b'}], {}, true).then(() => {
+    t.fail('Inequal amount of results not detected');
+  }).catch(e => {
+    if (e.message === 'Inequal amount of results obtained!') t.pass();
   });
 
   // decExponent(modexps, defaults)

@@ -11,8 +11,8 @@ const dec = require('../lib/dec.js');
 
 require('./fetchmock.js');
 
-const server1 = 'http://localhost:8081/api/modexp/';
-const server2 = 'http://localhost:8081/api/modexp/';
+const server1 = 'server_1';
+const server2 = 'server_2';
 
 /*
  * A mapping of algorithm functions to test and their reqired options, used

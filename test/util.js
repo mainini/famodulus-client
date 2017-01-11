@@ -9,12 +9,15 @@ const test = require('tape');
 const util = require('../lib/util.js');
 const _I = require('BigInt');
 
+// Override global fetch to run tests without any server and create malformed responses.
+require('./fetchmock.js');
+
 /*
  * Test the request function
  */
 test('request', function (t) {
   t.plan(1);
-  util.request({modexps: [{b: '2', e: '4', m: 'b'}]}, 'http://localhost:8081/api/modexp/').then(result => {
+  util.request({modexps: [{b: '2', e: '4', m: 'b'}]}, 'api-uri').then(result => {
     t.equal(result[0].r, '5', 'result is 5');
   });
 });

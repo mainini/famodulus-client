@@ -9,19 +9,17 @@ const test = require('tape');
 const direct = require('../lib/direct.js');
 const dec = require('../lib/dec.js');
 
+// Override global fetch to run tests without any server and create malformed responses.
 require('./fetchmock.js');
-
-const server1 = 'server_1';
-const server2 = 'server_2';
 
 /*
  * A mapping of algorithm functions to test and their reqired options, used
  * in the tests below
  */
 const algorithms = [
-  {func: direct.direct, options: {server: server1, brief: true}},
-  {func: dec.decExponent, options: {servers: [server1, server2], brief: true}},
-  {func: dec.decExponent, options: {servers: [server1, server2], checked: true, brief: true}}
+  {func: direct.direct, options: {server: 'server_1', brief: true}},
+  {func: dec.decExponent, options: {servers: ['server_1', 'server_2'], brief: true}},
+  {func: dec.decExponent, options: {servers: ['server_1', 'server_2'], checked: true, brief: true}}
 ];
 
 /*

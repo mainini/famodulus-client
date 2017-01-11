@@ -8,6 +8,7 @@
 const test = require('tape');
 const Client = require('../lib/client.js');
 
+// Override global fetch to run tests without any server and create malformed responses.
 require('./fetchmock.js');
 
 const servers = ['server_1', 'server_2'];

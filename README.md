@@ -55,6 +55,13 @@ installation. Good usage examples can be found in `test/client.js` or in the [fa
 
 # Version History
 
+## 1.0.1 (2017-01-14)
+
+* Bugfix: randomList() - random value must be < 1
+* Bugfix: non-prime modulus in unit test causing the test to fail sometimes
+* Improvement: Better performance with mod() and simpler testing in random()
+* Improvement: Not shuffling lists of size <= 1
+
 ## 1.0.0 (2017-01-11)
 
 * Initial version

@@ -1,6 +1,6 @@
 {
   "name": "famodulus-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript library for outsourcing calculations in multiplicative groups with prime modulus.",
   "keywords": [
     "modexp",

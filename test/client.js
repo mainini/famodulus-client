@@ -143,8 +143,8 @@ test('decExponent', function (t) {
   });
 
   // test with larger modulus for the random number generator
-  c1.decExponent([{b: '2', e: '20', m: '10000'}], true).then(result => {
-    t.equal(result[0].r, '64', 'large base result is correct');
+  c1.decExponent([{b: '2', e: '9', m: '6b'}], true).then(result => {
+    t.equal(result[0].r, '54', 'large base result is correct');
   });
 
   // checked parameter must be boolean

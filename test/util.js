@@ -7,7 +7,7 @@
 
 const test = require('tape');
 const util = require('../lib/util.js');
-const _I = require('BigInt');
+const _I = require('../lib/bigint.js');
 
 // Override global fetch to run tests without any server and create malformed responses.
 require('./fetchmock.js');
@@ -27,8 +27,8 @@ test('request', function (t) {
  */
 test('constants', function (t) {
   t.plan(2);
-  t.ok(_I.equals(util.ZERO, _I.str2bigInt('0', 16, 0)), 'ZERO = 0');
-  t.ok(_I.equals(util.ONE, _I.str2bigInt('1', 16, 0)), 'ONE = 1');
+  t.ok(_I.equals(_I.ZERO, _I.str2bigInt('0', 16, 0)), 'ZERO = 0');
+  t.ok(_I.equals(_I.ONE, _I.str2bigInt('1', 16, 0)), 'ONE = 1');
 });
 
 /*
@@ -38,9 +38,9 @@ test('random', function (t) {
   t.plan(2);
 
   let bound = _I.str2bigInt('2', 16, 0);
-  t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than 0x2');
+  t.ok(_I.greater(bound, _I.random(bound)), 'random value is smaller than 0x2');
   bound = _I.str2bigInt('10000', 16, 0);
-  t.ok(_I.greater(bound, util.random(bound)), 'random value is smaller than 0x1000');
+  t.ok(_I.greater(bound, _I.random(bound)), 'random value is smaller than 0x1000');
 });
 
 /*

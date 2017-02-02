@@ -55,6 +55,11 @@ installation. Good usage examples can be found in `test/client.js` or in the [fa
 
 # Version History
 
+## 1.1.0 (2017-02-02)
+
+* Large performance improvement due to new BigInteger conversion functions
+* Abstraction of BigInteger library in own module
+
 ## 1.0.1 (2017-01-14)
 
 * Bugfix: randomList() - random value must be < 1

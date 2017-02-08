@@ -2,8 +2,6 @@
 
 famodulus-client is a JavaScript library for outsourcing modular exponentiations (modexps) in multiplicative groups with prime modulus.
 It is based on the research conducted in [Efficient and Secure Outsourcing of Modular Exponentiation](http://mainini.ch/data/efficient-secure-modular-exponentiation-outsourcing.pdf).
-The implementation makes extensive usage of various [ES6](http://www.ecma-international.org/ecma-262/6.0/) features and can be used in
-a reasonably current browser (tested with Firefox 50.1) or in [node.js](https://nodejs.org) (>=6.9.1).
 
 Outsourcing is performed using a RESTful API with one or more servers (depending on the algorithm). Have a look at
 [famodulus-server](https://github.com/mainini/famodulus-server) for a working implementation or have a look at the
@@ -16,6 +14,9 @@ The current version of the library supports the following outsourcing algorithms
 
 See also [mainini/famodulus](https://github.com/mainini/famodulus) for a complete modexp outsourcing system containing this library as
 well as the server and a corresponding demonstrator application.
+
+This implementation makes extensive usage of various [ES6](http://www.ecma-international.org/ecma-262/6.0/) features and can be used in
+a reasonably current browser (tested with Firefox 50.1) or in [node.js](https://nodejs.org) (>=6.9.1).
 
 _**WARNING: This library is intended exclusively for research purposes and must not be used in any real applications with any security
 requirements. You have been warned.**_
@@ -55,6 +56,10 @@ Documentation of FamodulusClient and all related code can be found in `.build/do
 installation. Good usage examples can be found in `test/client.js` or in the [famodulus-demo](https://github.com/mainini/famodulus-demo).
 
 # Version History
+
+## 1.1.1 (2017-02-08)
+
+* Linking thesis in README
 
 ## 1.1.0 (2017-02-02)
 

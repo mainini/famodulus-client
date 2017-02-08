@@ -1,6 +1,7 @@
 # Introduction
 
 famodulus-client is a JavaScript library for outsourcing modular exponentiations (modexps) in multiplicative groups with prime modulus.
+It is based on the research conducted in [Efficient and Secure Outsourcing of Modular Exponentiation](http://mainini.ch/data/efficient-secure-modular-exponentiation-outsourcing.pdf).
 The implementation makes extensive usage of various [ES6](http://www.ecma-international.org/ecma-262/6.0/) features and can be used in
 a reasonably current browser (tested with Firefox 50.1) or in [node.js](https://nodejs.org) (>=6.9.1).
 
